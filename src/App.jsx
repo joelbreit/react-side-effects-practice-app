@@ -61,6 +61,15 @@ function App() {
 			)
 		);
 		modal.current.close();
+
+		const storedIds =
+			JSON.parse(localStorage.getItem("selectedPlaces")) || [];
+		localStorage.setItem(
+			"selectedPlaces",
+			JSON.stringify(
+				storedIds.filter((id) => id !== selectedPlace.current)
+			)
+		);
 	}
 
 	return (
@@ -91,7 +100,7 @@ function App() {
 				/>
 				<Places
 					title="Available Places"
-					places={AVAILABLE_PLACES}
+					places={availablePlaces}
 					onSelectPlace={handleSelectPlace}
 				/>
 			</main>
